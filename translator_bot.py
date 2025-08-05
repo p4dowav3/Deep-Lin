@@ -101,7 +101,7 @@ async def on_raw_reaction_add(payload: discord.RawReactionActionEvent):
             
             # Reply only if translation is different from original
             if result.text.strip() and result.text.lower() != message.content.lower():
-                await message.reply(f"**🌐 {result.detected_source_lang} → {target_lang} Translation:**\n{result.text}")
+                await message.reply(f"**🌐 {result.detected_source_lang} → {target_lang} Translation:**\n{result.text}", delete_after=60)
 
     except deepl.DeepLException as e:
         print(f"DeepL API error: {e}")
