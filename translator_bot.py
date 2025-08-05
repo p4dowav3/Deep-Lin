@@ -4,6 +4,7 @@ import deepl
 import flag
 import json
 from dotenv import load_dotenv
+from discord.ext import commands
 
 # Load environment variables from .env file
 load_dotenv()
@@ -23,7 +24,7 @@ except Exception as e:
 intents = discord.Intents.default()
 intents.message_content = True
 
-bot = commands.bot(intents=intents)
+bot = commands.Bot(command_prefix="!", intents=intents)
 
 # Dictionary file path
 DICTIONARY_FILE = "translation_dictionary.json"
