@@ -90,7 +90,7 @@ async def translate_command(
         embed.add_field(name=f"Translated Text ({result.detected_source_lang} -> {target_language.upper()})", 
                         value=f"```{result.text}```", inline=False)
         
-        await ctx.respond(embed=embed)
+        await ctx.respond(embed=embed, delete_after=60)
 
     except deepl.DeepLException as e:
         await ctx.respond(f"Translation error occurred: {e}", ephemeral=True)
