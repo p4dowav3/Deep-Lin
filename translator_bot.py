@@ -23,7 +23,7 @@ except Exception as e:
 intents = discord.Intents.default()
 intents.message_content = True
 
-bot = discord.Bot(intents=intents)
+bot = commands.bot(intents=intents)
 
 # Dictionary file path
 DICTIONARY_FILE = "translation_dictionary.json"
@@ -137,11 +137,13 @@ async def dict_add_command(
     except Exception as e:
         await ctx.respond(f"Error adding dictionary entry: {e}", ephemeral=True)
 
-@bot.slash_command(name="dict_search", description="Search for a word/phrase in the translation dictionary.")
-async def dict_search_command(
+@bot.slash_command(name="translate", description="Translate text to specified language.")
+async def translate_command(
     ctx: discord.ApplicationContext,
-    word: discord.Option(str, description="Word/phrase to search for"),
-    language: discord.Option(str, description="Language code (optional)", required=False)
+    text: discord.Option(str, description="Enter text to translate."),
+    target_language: discord.Option(str, description="Target language code (e.g., KO, EN-US, JA)", choices=[
+        "KO", "EN-US", "EN-GB", "JA", "ZH", "FR", "DE", "ES", "IT", "PT-PT", "PT-BR", "RU"
+    ])
 ):
     """Search dictionary for entries"""
     try:
